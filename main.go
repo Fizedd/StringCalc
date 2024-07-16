@@ -75,6 +75,6 @@ func main() {
 		fmt.Println(result)
 
 	default:
-		panic("неверное выражение")
+		panic("неверное вражение")
 	}
 }
