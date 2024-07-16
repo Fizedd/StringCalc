@@ -10,12 +10,12 @@ import (
 
 func main() {
 	fmt.Println("Введите выражение:")
-	expr, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	expr = strings.TrimSpace(expr)
+	chtoto, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+	chtoto = strings.TrimSpace(chtoto)
 
 	switch {
-	case strings.Contains(expr, " + "):
-		parts := strings.Split(expr, " + ")
+	case strings.Contains(chtoto, " + "):
+		parts := strings.Split(chtoto, " + ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
@@ -29,8 +29,8 @@ func main() {
 		}
 		fmt.Println(result)
 
-	case strings.Contains(expr, " - "):
-		parts := strings.Split(expr, " - ")
+	case strings.Contains(chtoto, " - "):
+		parts := strings.Split(chtoto, " - ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
@@ -44,8 +44,8 @@ func main() {
 		}
 		fmt.Println(result)
 
-	case strings.Contains(expr, " * "):
-		parts := strings.Split(expr, " * ")
+	case strings.Contains(chtoto, " * "):
+		parts := strings.Split(chtoto, " * ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
@@ -59,8 +59,8 @@ func main() {
 		}
 		fmt.Println(result)
 
-	case strings.Contains(expr, " / "):
-		parts := strings.Split(expr, " / ")
+	case strings.Contains(chtoto, " / "):
+		parts := strings.Split(chtoto, " / ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
