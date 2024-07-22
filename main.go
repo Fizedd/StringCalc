@@ -9,72 +9,75 @@ import (
 )
 
 func main() {
-	fmt.Println("Введите выражение:")
-	chtoto, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	chtoto = strings.TrimSpace(chtoto)
+	fmt.Println("Введите выражение ЧЕРЕЗ ПРОБЕЛЫ(см. условия задачи):")
+	expr, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+	expr = strings.TrimSpace(expr)
 
 	switch {
-	case strings.Contains(chtoto, " + "):
-		parts := strings.Split(chtoto, " + ")
+	case strings.Contains(expr, " + "):
+		parts := strings.Split(expr, " + ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
-		num, err := strconv.Atoi(parts[0])
-		if err != nil || num < 1 || num > 10 {
-			panic("неверное выражение")
-		}
-		result := strconv.Itoa(num) + parts[1]
+		str1 := strings.Trim(parts[0], "\"")
+		str2 := strings.Trim(parts[1], "\"")
+		result := str1 + str2
 		if len(result) > 40 {
 			result = result[:40] + "..."
 		}
 		fmt.Println(result)
 
-	case strings.Contains(chtoto, " - "):
-		parts := strings.Split(chtoto, " - ")
+	case strings.Contains(expr, " - "):
+		parts := strings.Split(expr, " - ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
-		num, err := strconv.Atoi(parts[0])
-		if err != nil || num < 1 || num > 10 {
-			panic("неверное выражение")
-		}
-		result := strings.Replace(strconv.Itoa(num), parts[1], "", 1)
+		str1 := strings.Trim(parts[0], "\"")
+		str2 := strings.Trim(parts[1], "\"")
+		result := strings.Replace(str1, str2, "", 1)
 		if len(result) > 40 {
 			result = result[:40] + "..."
 		}
 		fmt.Println(result)
 
-	case strings.Contains(chtoto, " * "):
-		parts := strings.Split(chtoto, " * ")
+	case strings.Contains(expr, " * "):
+		parts := strings.Split(expr, " * ")
 		if len(parts) != 2 {
 			panic("неверное выражение")
 		}
-		num, err := strconv.Atoi(parts[0])
-		if err != nil || num < 1 || num > 10 {
-			panic("неверное выражение")
-		}
-		result := strings.Repeat(parts[1], num)
-		if len(result) > 40 {
-			result = result[:40] + "..."
-		}
-		fmt.Println(result)
-
-	case strings.Contains(chtoto, " / "):
-		parts := strings.Split(chtoto, " / ")
-		if len(parts) != 2 {
-			panic("неверное выражение")
-		}
+		str := strings.Trim(parts[0], "\"")
 		num, err := strconv.Atoi(parts[1])
 		if err != nil || num < 1 || num > 10 {
 			panic("неверное выражение")
 		}
-		result := parts[0][:len(parts[0])/num]
+		result := strings.Repeat(str, num)
 		if len(result) > 40 {
 			result = result[:40] + "..."
 		}
 		fmt.Println(result)
 
+	case strings.Contains(expr, " / "):
+		parts := strings.Split(expr, " / ")
+		if len(parts) != 2 {
+			panic("неверное выражение")
+		}
+		str := strings.Trim(parts[0], "\"")
+		num, err := strconv.Atoi(parts[1])
+		if err != nil || num < 1 || num > 10 {
+			panic("неверное выражение")
+		}
+		partLength := len(str) / num
+		if partLength == 0 {
+			fmt.Println("")
+		} else {
+			result := str[:partLength]
+			if len(result) > 40 {
+				result = result[:40] + "..."
+			}
+			fmt.Println(result)
+		}
+
 	default:
-		panic("неверное вражение")
+		panic("неверное выражение")
 	}
 }
