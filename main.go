@@ -9,9 +9,14 @@ import (
 )
 
 func main() {
-	fmt.Println("Введите выражение ЧЕРЕЗ ПРОБЕЛЫ(см. условия задачи):")
+	fmt.Println("Введите выражение:")
 	expr, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 	expr = strings.TrimSpace(expr)
+
+	// Проверка длины входного выражения
+	if len(expr) > 10 {
+		panic("входное выражение должно содержать не более 10 символов")
+	}
 
 	switch {
 	case strings.Contains(expr, " + "):
